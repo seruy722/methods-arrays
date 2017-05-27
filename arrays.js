@@ -7,7 +7,7 @@ function each(arr, callback, thisArg) {
     }
 }
 
-each(arr, item => console.log(item + 2));
+each(arr, item => console.log(item * 2));
 
 let links = document.links;
 
@@ -44,3 +44,31 @@ console.log(mul);
 
 let trueArr = filter(arr, Boolean);
 console.log(trueArr);
+
+// some
+
+let some = function(arr, callback, thisArg) {
+    for (let i = 0; i < arr.length; i++) {
+        if (callback.call(thisArg, arr[i], i, arr)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+let eigth = some(arr, item => item < 8);
+console.log(eigth);
+
+// every
+
+let every = function(arr, callback, thisArg) {
+    for (let i = 0; i < arr.length; i++) {
+        if (!callback.call(thisArg, arr[i], i, arr)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+let seven = every(arr, item => item === 7);
+console.log(seven);
