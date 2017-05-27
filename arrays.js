@@ -1,5 +1,5 @@
 // forEach handmade
-let arr = [2, 8, 9, 7, 8];
+let arr = [0, 2, 8, 9, 7, 8, 'hello'];
 
 function each(arr, callback, thisArg) {
     for (let i = 0; i < arr.length; i++) {
@@ -7,7 +7,7 @@ function each(arr, callback, thisArg) {
     }
 }
 
-each(arr, item => console.log(item * 2));
+each(arr, item => console.log(item + 2));
 
 let links = document.links;
 
@@ -25,3 +25,22 @@ function map(arr, callback, thisArg) {
 
 let href = map([...links], link => link.href);
 console.log(href);
+
+
+// filter
+
+function filter(arr, callback, thisArg) {
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (callback.call(thisArg, arr[i], i, arr)) {
+            result.push(arr[i]);
+        }
+    }
+    return result;
+}
+
+let mul = filter(arr, item => item * 2);
+console.log(mul);
+
+let trueArr = filter(arr, Boolean);
+console.log(trueArr);
