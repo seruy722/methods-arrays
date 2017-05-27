@@ -1,7 +1,7 @@
 // forEach handmade
 let arr = [0, 2, 8, 9, 7, 8, 'hello'];
 
-function each(arr, callback, thisArg) {
+let each = function(arr, callback, thisArg) {
     for (let i = 0; i < arr.length; i++) {
         callback.call(thisArg, arr[i], i, arr);
     }
@@ -15,7 +15,7 @@ each([...links], link => link.classList.add('link-active'));
 
 // map
 
-function map(arr, callback, thisArg) {
+let map = function(arr, callback, thisArg) {
     let result = [];
     for (let i = 0; i < arr.length; i++) {
         result.push(callback.call(thisArg, arr[i], i, arr));
@@ -29,7 +29,7 @@ console.log(href);
 
 // filter
 
-function filter(arr, callback, thisArg) {
+let filter = function(arr, callback, thisArg) {
     let result = [];
     for (let i = 0; i < arr.length; i++) {
         if (callback.call(thisArg, arr[i], i, arr)) {
@@ -72,3 +72,23 @@ let every = function(arr, callback, thisArg) {
 
 let seven = every(arr, item => item === 7);
 console.log(seven);
+
+// reduce
+let arrs = [
+    [1, 2, 3],
+    [4, 5],
+    [6],
+    [7, 8],
+    [9, 10, 11]
+];
+
+let reduce = function(arr, callback, startValue) {
+    let result = startValue;
+    for (let i = 0; i < arr.length; i++) {
+        result = callback.call(null, result, arr[i], i, arr);
+    }
+    return result;
+}
+
+let arrsResult = reduce(arrs, (result, current) => result.concat(current), []);
+console.log(arrsResult);
